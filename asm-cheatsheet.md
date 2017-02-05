@@ -34,3 +34,22 @@ Few differences in syntax:
 |                           | EFLAGS register; ZF = zero flag IF = interrupt enable flag SF = sign flag | Used by the CPU to track results of logic                                                   |             |
 |                           | EIP (Extended Instruction Pointer)                                        | Points to the address of the next instruction to be executed                                |             |
 |                           |                                                                           |                                                                                             |             |
+
+# Commands
+---
+
+`mov` - copies data from source to destination;
+
+data cannot be moved directly from memory to a segment register - must use gen-purpose register as intermediate step.
+
+| Intel Syntax           | Intel Example           | AT&T Example              |
+|------------------------|-------------------------|---------------------------|
+| `mov <dest>, <source>` | `mov eax, 51h ;comment` | movl $51h, %eax #comment` |
+
+e.g. 
+`mov eax, 1234h; store the value of 1234 (hex) into EAX`
+`mov cs, ax    ; then copy the value of AX into CS`
+
+---
+
+`add`, `sub`
