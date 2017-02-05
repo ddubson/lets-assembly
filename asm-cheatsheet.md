@@ -118,6 +118,13 @@ Branch the flow of the program to another location based on the value of the efl
 
 ##### increment and decrement
 
+`inc`, `dec` - increment/decrement the destination
+
+| Intel Syntax   | Intel Example  | AT&T Example |
+|----------------|----------------|--------------|
+| `inc <dest>`   | `inc eax`      | `incl %eax`  |
+| `dec <dest>`   | `dec eax`      | `decl %eax`  |
+
 ---
 
 ##### load effective (memory) address
@@ -137,3 +144,5 @@ Branch the flow of the program to another location based on the value of the efl
 | Intel Syntax | Intel Example  | AT&T Example  |
 |--------------|----------------|---------------|
 | `int <val>`  | `int 0x80`     | `int $0x80`   |
+
+---
