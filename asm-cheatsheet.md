@@ -38,18 +38,102 @@ Few differences in syntax:
 # Commands
 ---
 
+##### mov
+
 `mov` - copies data from source to destination;
 
 data cannot be moved directly from memory to a segment register - must use gen-purpose register as intermediate step.
 
-| Intel Syntax           | Intel Example           | AT&T Example              |
-|------------------------|-------------------------|---------------------------|
-| `mov <dest>, <source>` | `mov eax, 51h ;comment` | movl $51h, %eax #comment` |
+| Intel Syntax           | Intel Example           | AT&T Example               |
+|------------------------|-------------------------|----------------------------|
+| `mov <dest>, <source>` | `mov eax, 51h ;comment` | `movl $51h, %eax #comment` |
 
 e.g. 
 `mov eax, 1234h; store the value of 1234 (hex) into EAX`
+
 `mov cs, ax    ; then copy the value of AX into CS`
 
 ---
 
-`add`, `sub`
+##### add and sub
+
+`add`, `sub` - adds source to destination/subtracts source from destination and stores result in destination
+
+| Intel Syntax           | Intel Example  | AT&T Example      |
+|------------------------|----------------|-------------------|
+| `add <dest>, <source>` | `add eax, 51h` | `addl $51h, %eax` |
+| `sub <dest>, <source>` | `sub eax, 51h` | `subl $51h, %eax` |
+
+---
+
+##### push and pop
+
+`push`, `pop` - push into stack and pop off of the stack.
+
+| Intel Syntax   | Intel Example  | AT&T Example |
+|----------------|----------------|--------------|
+| `push <value>` | `push eax`     | `pushl %eax` |
+| `pop <dest>`   | `pop eax`      | `popl %eax`  |
+
+---
+
+###### xor - exclusive-OR
+
+`xor` - conducts a bitwise logical exclusive-OR (XOR) function; Use XOR value to zero out or clear a register/memory location.
+
+| Intel Syntax           | Intel Example  | AT&T Example     |
+|------------------------|----------------|------------------|
+| `xor <dest>, <source>` | `xor eax, eax` | `xor %eax, %eax` |
+
+---
+
+###### jump and branch
+
+Branch the flow of the program to another location based on the value of the eflag ZF (zero flag)
+
+`jne`, `jnz` - jumps if the zero flag is 0
+`je`, `jz` - jump if the zero flag is 1
+`jmp` - always jumps
+
+
+| Intel Syntax              | Intel Example  | AT&T Example |
+|---------------------------|----------------|--------------|
+| `jnz <dest> / jne <dest>` | `jne start`    | `jne start`  |
+| `jz <dest> / je <source>` | `jz loop`      | `jz loop`    |
+| `jmp <dest>`              | `jmp end`      | `jmp end`    |
+
+---
+
+##### call and return
+
+`call` - calls a procedure
+`ret` - used to end a procedure to return the flow to the command after the call.
+
+| Intel Syntax  | Intel Example      | AT&T Example       |
+|---------------|--------------------|--------------------|
+| `call <dest>` | `call subroutine1` | `call subroutine1` |
+| `ret`         | `ret`              | `ret`              |
+
+---
+
+##### increment and decrement
+
+---
+
+##### load effective (memory) address
+
+`lea` - loads effective address of the source into destination
+
+| Intel Syntax           | Intel Example      | AT&T Example         |
+|------------------------|--------------------|----------------------|
+| `lea <dest>, <source>` | `lea eax, [dsi+4]` | `leal 4(%dsi), %eax` |
+
+---
+
+###### interrupt
+
+`int` - throws a system interrupt signal to the processor; common interrupt is `0x80` - sys call to kernel.
+
+| Intel Syntax | Intel Example  | AT&T Example  |
+|--------------|----------------|---------------|
+| `int <val>`  | `int 0x80`     | `int $0x80`   |
