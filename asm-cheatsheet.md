@@ -77,7 +77,7 @@ e.g.
 
 ---
 
-###### xor - exclusive-OR
+##### xor - exclusive-OR
 
 `xor` - conducts a bitwise logical exclusive-OR (XOR) function; Use XOR value to zero out or clear a register/memory location.
 
@@ -87,7 +87,7 @@ e.g.
 
 ---
 
-###### jump and branch
+##### jump and branch
 
 Branch the flow of the program to another location based on the value of the eflag ZF (zero flag)
 
@@ -137,7 +137,7 @@ Branch the flow of the program to another location based on the value of the efl
 
 ---
 
-###### interrupt
+##### interrupt
 
 `int` - throws a system interrupt signal to the processor; common interrupt is `0x80` - sys call to kernel.
 
